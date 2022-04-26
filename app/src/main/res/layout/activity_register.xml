@@ -90,7 +90,7 @@
         tools:layout_editor_absoluteY="281dp" />
 
     <Button
-        android:id="@+id/bLogin"
+        android:id="@+id/bRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register"

@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        LoginActivity loginActivity = new LoginActivity(); //no hace nada creo? 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     SearchFragment searchFragment = new SearchFragment();
     MessagesFragment messagesFragment = new MessagesFragment();
     ProfileFragment profileFragment = new ProfileFragment();
+
+
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -50,4 +50,15 @@
         tools:layout_editor_absoluteX="20dp"
         tools:layout_editor_absoluteY="164dp" />
 
+    <TextView
+        android:id="@+id/tvRegisterLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Register Here"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteY="223dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

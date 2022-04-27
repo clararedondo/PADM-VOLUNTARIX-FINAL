@@ -20,17 +20,19 @@ public class MainActivity extends AppCompatActivity {
     public static final String USER_MESSAGE_KEY = "User";
 
     BottomNavigationView bottomNavigationView;
-    UserLocalStore preferences;
+    static UserLocalStore preferences = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        preferences = new UserLocalStore(this);
+        if (preferences == null) {
+            preferences = new UserLocalStore(this);
 
-        Intent login = new Intent(this, LoginActivity.class);
-        startActivityForResult(login, LOG_IN_REQUEST);
+            Intent login = new Intent(this, LoginActivity.class);
+            startActivityForResult(login, LOG_IN_REQUEST);
+        }
 
         NavigationBarView.OnItemSelectedListener navListener = new NavigationBarView.OnItemSelectedListener() {
             @Override

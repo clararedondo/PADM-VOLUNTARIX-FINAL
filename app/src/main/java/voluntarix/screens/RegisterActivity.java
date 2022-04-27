@@ -19,10 +19,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         etName = (EditText) findViewById(R.id.etName);
         etLastName = (EditText) findViewById(R.id.etLastName);
-        etEmail = (EditText) findViewById(R.id.etEmail);
+        etEmail = (EditText) findViewById(R.id.etLocation);
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
-        bRegister = (Button) findViewById(R.id.bRegister);
+        bRegister = (Button) findViewById(R.id.bUpdateProfile);
 
         bRegister.setOnClickListener(this);
 
@@ -31,14 +31,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.bRegister:
+            case R.id.bUpdateProfile:
                 String name = etName.getText().toString();
                 String lastName = etLastName.getText().toString();
                 String email = etEmail.getText().toString();
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
 
-                User registeredData = new User(name, lastName, email, username, password);
+                User registeredData = new User(name, lastName, email, username, password, "", "", "");
 
                 break;
         }

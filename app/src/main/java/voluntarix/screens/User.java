@@ -1,6 +1,8 @@
 package voluntarix.screens;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     String name, lastName, email, username, password;
 
@@ -20,5 +22,21 @@ public class User {
         this.email = "";
 
 
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

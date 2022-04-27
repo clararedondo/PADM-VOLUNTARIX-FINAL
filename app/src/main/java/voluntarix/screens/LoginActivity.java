@@ -14,7 +14,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button bLogin;
     EditText etUsername, etPassword;
     TextView tvRegisterLink;
-    UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +28,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         bLogin.setOnClickListener(this);
         tvRegisterLink.setOnClickListener(this);
 
-        userLocalStore = new UserLocalStore(this);
-
     }
 
     @Override
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.bLogin:
-                User user = new User(null, null); //se puede mejorar con un servidor
-                userLocalStore.storeUserData(user);
-                userLocalStore.setUserLoggedIn(true);
+                User user = new User(etUsername.getText().toString(), etPassword.getText().toString()); //se puede mejorar con un servidor
+                Intent result = new Intent().putExtra(MainActivity.USER_MESSAGE_KEY, user);
+                setResult(RESULT_OK, result);
+                finish();
                 break;
 
             case R.id.tvRegisterLink:

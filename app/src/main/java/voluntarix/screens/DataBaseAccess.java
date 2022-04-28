@@ -23,7 +23,7 @@ public class DataBaseAccess extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS voluntaries (title VARCHAR(64), description VARCHAR(512), publisher VARCHAR(64), day INTEGER, month INTEGER, year INTEGER);");
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS voluntaries (title VARCHAR(64), description VARCHAR(512), publisher VARCHAR(64), day INTEGER, month INTEGER, year INTEGER, location VARCHAR(128));");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS tags (tag VARCHAR(32), voluntary INTEGER, FOREIGN KEY (voluntary) REFERENCES voluntaries(rowid));");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS users (user VARCHAR(32) PRIMARY KEY, password VARCHAR(32) NOT NULL, name VARCHAR(32), last_name VARCHAR(32), email VARCHAR(64), location VARCHAR(64), description VARCHAR(512));");
 
@@ -87,7 +87,7 @@ public class DataBaseAccess extends SQLiteOpenHelper {
             }
             retrieval.add(new VoluntaryEvent(cr.getString(cr.getColumnIndex("title")), cr.getString(cr.getColumnIndex("description")),
                     cr.getString(cr.getColumnIndex("publisher")), tags, cr.getInt(cr.getColumnIndex("day")),
-                    cr.getInt(cr.getColumnIndex("month")), cr.getInt(cr.getColumnIndex("year"))));
+                    cr.getInt(cr.getColumnIndex("month")), cr.getInt(cr.getColumnIndex("year")), cr.getString(cr.getColumnIndex("location"))));
         }
         db.close();
         return retrieval;

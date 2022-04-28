@@ -6,33 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".VoluntaryActivity">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <Button
         android:id="@+id/bgetRoute"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
         android:text="Get Route"
-        app:layout_constraintBottom_toTopOf="@+id/mapView"
-        app:layout_constraintEnd_toEndOf="@+id/mapView" />
+        app:layout_constraintEnd_toStartOf="@+id/next"
+        app:layout_constraintStart_toEndOf="@+id/previous"
+        app:layout_constraintTop_toBottomOf="@+id/vol_tags" />
 
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="0dp"
         android:layout_height="255dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toTopOf="@+id/vol_tags"
-        app:layout_constraintEnd_toStartOf="@+id/mapView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mapView">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,9 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintBottom_toTopOf="@+id/addr"
         app:layout_constraintStart_toStartOf="@+id/scrollView3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,9 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintBottom_toTopOf="@+id/addr"
         app:layout_constraintEnd_toEndOf="@+id/scrollView3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,10 +68,40 @@
         android:id="@+id/vol_tags"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="142dp"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/mapView"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView3"
         app:layout_constraintStart_toStartOf="@+id/scrollView3"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+
+    <Button
+        android:id="@+id/previous"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Previous"
+        app:layout_constraintBottom_toBottomOf="@+id/bgetRoute"
+        app:layout_constraintEnd_toStartOf="@+id/bgetRoute"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bgetRoute" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="@+id/bgetRoute"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bgetRoute"
+        app:layout_constraintTop_toTopOf="@+id/bgetRoute" />
+
+    <TextView
+        android:id="@+id/addr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView3"
+        app:layout_constraintStart_toStartOf="@+id/scrollView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+public class RegisterActivity extends AppCompatActivity {
 
     Button bRegister;
     EditText etName, etLastName, etEmail, etUsername, etPassword;
@@ -27,14 +27,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         etPassword = (EditText) findViewById(R.id.etPassword);
         bRegister = (Button) findViewById(R.id.bUpdateProfile);
 
-        bRegister.setOnClickListener(this);
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.bUpdateProfile:
+        bRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 String name = etName.getText().toString();
                 String lastName = etLastName.getText().toString();
                 String email = etEmail.getText().toString();
@@ -43,8 +38,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 db.storeUser(new User(name, lastName, email, username, password, "", ""));
 
-                this.finish();
-                break;
-        }
+                RegisterActivity.this.finish();
+            }
+        });
+
     }
 }

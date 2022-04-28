@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.File;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button bLogin;
@@ -34,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.bLogin:
-                User user = new User(etUsername.getText().toString(), etPassword.getText().toString()); //se puede mejorar con un servidor
+                User user = new User(etUsername.getText().toString(), etPassword.getText().toString()); //Comprobar login en servidor, mostrar error si devuelve fallo
                 Intent result = new Intent().putExtra(MainActivity.USER_MESSAGE_KEY, user);
                 setResult(RESULT_OK, result);
                 finish();

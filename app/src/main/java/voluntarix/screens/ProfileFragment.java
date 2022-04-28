@@ -48,7 +48,6 @@ public class ProfileFragment extends Fragment {
         name.setText("Name: " + data.getName());
         last_name.setText("Last name: " + data.getLastName());
         location.setText("Location: " + data.getLocation());
-        tags.setText("Tags: " + data.getTags());
         description.setText("Description: " + data.getDescription());
 
         edit_profile = (Button) view.findViewById(R.id.edit_button);

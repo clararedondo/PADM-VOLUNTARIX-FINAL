@@ -4,15 +4,14 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    String name, lastName, email, username, password, tags, location, description;
+    String name, lastName, email, username, password, location, description;
 
-    public User(String name, String lastName, String email, String username, String password, String tags, String location, String description){
+    public User(String name, String lastName, String email, String username, String password, String location, String description){
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.tags = tags;
         this.location = location;
         this.description = description;
     }
@@ -45,10 +44,6 @@ public class User implements Serializable {
 
     public String getPassword() {
         return password;
-    }
-
-    public String getTags() {
-        return tags;
     }
 
     public String getLocation() {

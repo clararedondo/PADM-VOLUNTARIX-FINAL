@@ -11,11 +11,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     Button bRegister;
     EditText etName, etLastName, etEmail, etUsername, etPassword;
+    DataBaseAccess db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        db = new DataBaseAccess(this);
 
         etName = (EditText) findViewById(R.id.etName);
         etLastName = (EditText) findViewById(R.id.etLastName);
@@ -38,7 +41,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
 
-                User registeredData = new User(name, lastName, email, username, password, "", "", "");//TODO: Change this to ddbb connection
+                db.storeUser(new User(name, lastName, email, username, password, "", ""));
+
                 this.finish();
                 break;
         }

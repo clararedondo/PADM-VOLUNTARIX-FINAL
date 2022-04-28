@@ -23,7 +23,7 @@ public class DataBaseAccess extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS voluntaries (title VARCHAR(64), description VARCHAR(512), publisher VARCHAR(64), day INTEGER, month INTEGER, year INTEGER, location VARCHAR(128));");
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS voluntaries (title VARCHAR(64) UNIQUE, description VARCHAR(512), publisher VARCHAR(64), day INTEGER, month INTEGER, year INTEGER, location VARCHAR(128));");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS tags (tag VARCHAR(32), voluntary INTEGER, FOREIGN KEY (voluntary) REFERENCES voluntaries(rowid));");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS users (user VARCHAR(32) PRIMARY KEY, password VARCHAR(32) NOT NULL, name VARCHAR(32), last_name VARCHAR(32), email VARCHAR(64), location VARCHAR(64), description VARCHAR(512));");
 
@@ -32,6 +32,29 @@ public class DataBaseAccess extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+
+    public void storeVoluntaryEvent(VoluntaryEvent vol) {
+        ContentValues content = new ContentValues();
+        content.put("title", vol.title);
+        content.put("description", vol.description);
+        content.put("publisher", vol.publisher);
+        content.put("day", vol.day);
+        content.put("month", vol.month);
+        content.put("year", vol.year);
+        content.put("location", vol.location);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert("voluntaries", null, content);
+        Cursor cr = db.rawQuery("SELECT rowid FROM voluntaries WHERE title = ?;", new String[]{vol.title});
+        @SuppressLint("Range")
+        int rowid = cr.getInt(cr.getColumnIndex("rowid"));
+        for (String tag : vol.tags) {
+            content = new ContentValues();
+            content.put("tag", tag);
+            content.put("voluntary", rowid);
+            db.insert("tags", null, content);
+        }
+        db.close();
     }
 
     public void storeUser(User user) {

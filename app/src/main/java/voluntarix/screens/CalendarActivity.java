@@ -3,6 +3,7 @@ package voluntarix.screens;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import java.sql.Time;
+import java.util.List;
 
 
 public class CalendarActivity extends AppCompatActivity {
@@ -33,8 +35,11 @@ public class CalendarActivity extends AppCompatActivity {
                     int month = dateArray[1];
                     int year = dateArray[2];
 
-                    //TODO consulta base de datos
-                    //TODO llamar activity voluntary, pasar un bundle con el title, desc, author/user, tags y location
+                    Intent intent = new Intent(CalendarActivity.this, VoluntaryActivity.class);
+                    intent.putExtra("day", day);
+                    intent.putExtra("month", month);
+                    intent.putExtra("year", year);
+                    startActivity(intent);
                 }
             }
         });

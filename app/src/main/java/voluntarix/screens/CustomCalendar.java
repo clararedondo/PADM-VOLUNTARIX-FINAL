@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -105,7 +106,7 @@ public class CustomCalendar extends LinearLayout {
         }
         addDaysinCalendar(defaultButtonParams, context, metrics);
 
-        initCalendarWithDate(chosenDateYear, chosenDateMonth, chosenDateDay);
+        initCalendarWithDate(chosenDateYear, chosenDateMonth, chosenDateDay, context);
 
     }
 
@@ -121,7 +122,7 @@ public class CustomCalendar extends LinearLayout {
         weeks[5] = weekSixLayout;
     }
 
-    private void initCalendarWithDate(int year, int month, int day) {
+    private void initCalendarWithDate(int year, int month, int day, Context context) {
         if (calendar == null)
             calendar = Calendar.getInstance();
         calendar.set(year, month, day);
@@ -141,6 +142,8 @@ public class CustomCalendar extends LinearLayout {
         int daysLeftInFirstWeek = 0;
         int indexOfDayAfterLastDayOfMonth = 0;
 
+        DataBaseAccess db = new DataBaseAccess(context);
+
         if (firstDayOfCurrentMonth != 1) {
             daysLeftInFirstWeek = firstDayOfCurrentMonth;
             indexOfDayAfterLastDayOfMonth = daysLeftInFirstWeek + daysInCurrentMonth;
@@ -152,7 +155,10 @@ public class CustomCalendar extends LinearLayout {
                     days[i].setTextColor(Color.WHITE);
                 } else {
                     days[i].setTextColor(Color.BLACK);
-                    days[i].setBackgroundColor(Color.TRANSPARENT);
+                    if (db.getEventsOn(dayNumber, currentDateMonth, currentDateYear).isEmpty())
+                        days[i].setBackgroundColor(Color.TRANSPARENT);
+                    else
+                        days[i].setBackgroundColor(Color.CYAN);
                 }
 
                 int[] dateArr = new int[3];
@@ -181,7 +187,10 @@ public class CustomCalendar extends LinearLayout {
                     days[i].setTextColor(Color.WHITE);
                 } else {
                     days[i].setTextColor(Color.BLACK);
-                    days[i].setBackgroundColor(Color.TRANSPARENT);
+                    if (db.getEventsOn(dayNumber, currentDateMonth, currentDateYear).isEmpty())
+                        days[i].setBackgroundColor(Color.TRANSPARENT);
+                    else
+                        days[i].setBackgroundColor(Color.CYAN);
                 }
 
                 int[] dateArr = new int[3];
@@ -200,7 +209,7 @@ public class CustomCalendar extends LinearLayout {
                 ++dayNumber;
             }
         }
-
+        db.close();
         if (month > 0)
             calendar.set(year, month - 1, 1);
         else
@@ -332,12 +341,11 @@ public class CustomCalendar extends LinearLayout {
     private void addDaysinCalendar(LayoutParams buttonParams, Context context,
                                    DisplayMetrics metrics) {
         int engDaysArrayCounter = 0;
-
         for (int weekNumber = 0; weekNumber < 6; ++weekNumber) {
             for (int dayInWeek = 0; dayInWeek < 7; ++dayInWeek) {
                 final Button day = new Button(context);
                 day.setTextColor(Color.parseColor(CUSTOM_GREY));
-                day.setBackgroundColor(Color.TRANSPARENT); //TODO: Consultar citas y si existe alguna cambiar el color de ese dia. Agregar un pop up con una lista de los voluntariados de ese dia
+                day.setBackgroundColor(Color.TRANSPARENT);
                 day.setLayoutParams(buttonParams);
                 day.setTextSize((int) metrics.density * 8);
                 day.setSingleLine();

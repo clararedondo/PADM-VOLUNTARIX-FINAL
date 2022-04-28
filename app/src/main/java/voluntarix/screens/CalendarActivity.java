@@ -34,6 +34,7 @@ public class CalendarActivity extends AppCompatActivity {
                     int year = dateArray[2];
 
                     //TODO consulta base de datos
+                    //TODO llamar activity voluntary, pasar un bundle con el title, desc, author/user, tags y location
                 }
             }
         });

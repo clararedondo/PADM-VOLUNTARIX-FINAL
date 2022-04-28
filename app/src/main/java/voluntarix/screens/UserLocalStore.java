@@ -55,11 +55,7 @@ public class UserLocalStore {
     }
 
     public boolean getUserLoggedIn(){
-        if(userLocalDatabase.getBoolean("loggedIn", false) == true){
-        return true;
-        }else{
-            return false;
-        }
+        return userLocalDatabase.getBoolean("loggedIn", false);
     }
 
     public void updateUserData(String key, String value) {

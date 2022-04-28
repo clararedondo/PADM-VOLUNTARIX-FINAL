@@ -7,6 +7,7 @@
     tools:context=".CalendarActivity">
 
     <voluntarix.screens.CustomCalendar
+        android:id="@+id/calendar"
         android:layout_width="404dp"
         android:layout_height="412dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -38,8 +38,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
 
-                User registeredData = new User(name, lastName, email, username, password, "", "", "");
-
+                User registeredData = new User(name, lastName, email, username, password, "", "", "");//TODO: Change this to ddbb connection
+                this.finish();
                 break;
         }
     }

@@ -289,7 +289,9 @@ public class CustomCalendar extends LinearLayout {
     }
 
     public void onDayClick(View view) {
-        mListener.onDayClick(view);
+        if (mListener != null) {
+            mListener.onDayClick(view);
+        }
 
         if (selectedDayButton != null) {
             if (chosenDateYear == currentDateYear
